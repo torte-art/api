@@ -8,7 +8,7 @@ import { Customer, KycDocument, State } from './dto/kyc.dto';
 import { SpiderDataRepository } from 'src/user/models/spider-data/spider-data.repository';
 import { UserRepository } from 'src/user/models/user/user.repository';
 import { UserRole } from 'src/shared/auth/user-role.enum';
-import { SettingService } from 'src/shared/setting/setting.service';
+import { SettingService } from 'src/shared/models/setting/setting.service';
 import { UserDataService } from 'src/user/models/userData/userData.service';
 import { In } from 'typeorm';
 

@@ -22,8 +22,10 @@ import { ConfigModule } from '@nestjs/config';
 import { JwtStrategy } from './auth/jwt.strategy';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { ScheduleModule } from '@nestjs/schedule';
-import { SettingRepository } from './setting/setting.repository';
-import { SettingService } from './setting/setting.service';
+import { SettingRepository } from './models/setting/setting.repository';
+import { SettingService } from './models/setting/setting.service';
+import * as path from 'path';
+import { I18nModule, I18nJsonParser } from 'nestjs-i18n';
 
 @Module({
   imports: [
@@ -60,6 +62,14 @@ import { SettingService } from './setting/setting.service';
       },
       defaults: {
         from: '"DFX.swiss" <' + process.env.MAIL_USER + '>',
+      },
+    }),
+    I18nModule.forRoot({
+      fallbackLanguage: 'de',
+      parser: I18nJsonParser,
+      parserOptions: {
+        path: path.join(__dirname, '/i18n/'),
+        watch: true,
       },
     }),
     ScheduleModule.forRoot(),

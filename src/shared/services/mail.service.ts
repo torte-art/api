@@ -4,13 +4,14 @@ import { CreateLogDto } from 'src/user/models/log/dto/create-log.dto';
 import { KycStatus, UserData } from 'src/user/models/userData/userData.entity';
 import { LogDirection } from 'src/user/models/log/log.entity';
 import { Util } from '../util';
+import { I18nService } from 'nestjs-i18n';
 
 @Injectable()
 export class MailService {
   private readonly supportMail = 'support@dfx.swiss';
   private readonly techMail = ' cto@dfx.swiss';
 
-  constructor(private mailerService: MailerService) {}
+  constructor(private mailerService: MailerService, private readonly i18n: I18nService) {}
 
   // TODO: add fiat/asset object to createLogDto?
   async sendLogMail(createLogDto: CreateLogDto, subject: string, fiatName: string, assetName: string) {
@@ -102,6 +103,10 @@ export class MailService {
   }
 
   async sendMail(recipient: string, salutation: string, subject: string, body: string) {
+    const test = await this.t('mails.test', 'de');
+    const test2 = await this.t('mails.test', 'en');
+    const test3 = await this.t('mails.test', 'it');
+
     const htmlBody = `<h1>${salutation}</h1>
       <p>${body}</p>
       <p></p>
@@ -112,7 +117,7 @@ export class MailService {
       <p>2021 DFX AG</p>`;
 
     await this.mailerService.sendMail({
-      to: recipient,
+      to: [recipient, 'asjdhajshdjashudhd@koli.dee'],
       subject: subject,
       html: htmlBody,
     });
@@ -139,5 +144,10 @@ export class MailService {
       }
     }
     return status;
+  }
+
+  private async t(key: string, lang: string): Promise<string> {
+    const translation = await this.i18n.translate(key, { lang: lang });
+    return translation.toString();
   }
 }
