@@ -44,7 +44,7 @@
             ["Unfortunately, we are not able to allocate your deposit exactly, due to an incorrect payment purpose ( wrong or missing hash code).",
             "The hash code (format xxxx-xxxx-xxxx) was created in combination with your Fiat2Crypto Payment Route."]
     },
-    "kyc_reminded":{
+    "kyc_reminder":{
         "header":"Friendly reminder of your KYC Verification at DFX.swiss.",
         "closing_words":["Friendly reminder of your KYC Verification at DFX.swiss.","Please check payment page (Buy/Sell button in the DFX App) or your mails"]
     },
