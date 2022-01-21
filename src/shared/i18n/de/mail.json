@@ -1,7 +1,7 @@
 {  
     "on_ramp":{
         "header": "Your deposit has been successfully processed",
-        "closing_words":["Happy trading"]
+        "closing_words":["Fröhliches trading"]
     },
     "off_ramp":{
         "1":{
